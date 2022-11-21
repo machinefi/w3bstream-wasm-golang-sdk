@@ -10,7 +10,7 @@ func WS_get_data(rid, ptr, size uint32) int32
 
 //go:wasm-module env
 //export ws_set_data
-func _ws_set_data(rid, ptr, size uint32) int32
+func WS_set_data(rid, ptr, size uint32) int32
 
 //go:wasm-module env
 //export ws_get_db
