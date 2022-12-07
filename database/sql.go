@@ -7,6 +7,9 @@ import (
 	"github.com/mailru/easyjson"
 )
 
+// Query example:
+// To insert a new record could be done like below
+// err := database.ExecSQL("INSERT INTO table (ID) VALUES (?);", database.Int32(0))
 func ExecSQL(query string, args ...SQLTypes) error {
 	params := make([]*param, 0)
 	for _, v := range args {
