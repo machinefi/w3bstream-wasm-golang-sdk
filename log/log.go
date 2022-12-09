@@ -1,8 +1,6 @@
 package log
 
-import (
-	"github.com/machinefi/w3bstream-wasm-golang-sdk/common"
-)
+import "github.com/machinefi/w3bstream-wasm-golang-sdk/common"
 
 func Log(message string) {
 	ptr, size := common.StringToPointer(message)
