@@ -25,3 +25,22 @@ func GetDataByRID(rid uint32) ([]byte, error) {
 	common.Allocations.AddResourceWithMem(rid, m)
 	return m.Data, nil
 }
+
+func GetEnv(key string) (string, error) {
+	kaddr, ksize := common.StringToPointer(key)
+
+	vaddr := uintptr(unsafe.Pointer(new(uint32)))
+	vsize := uintptr(unsafe.Pointer(new(uint32)))
+
+	code := common.WS_get_env(kaddr, ksize, uint32(vaddr), uint32(vsize))
+	if code != 0 {
+		return "", fmt.Errorf("get env failed [key:%s] [code:%d]", key, code)
+	}
+
+	m := common.Allocations.GetByAddr(*(*uint32)(unsafe.Pointer(vaddr)))
+	if m == nil {
+		return "", fmt.Errorf("get env failed: [key:%s] [addr:%x]", key, vaddr)
+	}
+
+	return string(m.Data), nil
+}
