@@ -38,7 +38,12 @@ word_count_v2_wasm:
 	@mkdir -pv wasms && mv word_count_v2/word_count_v2.wasm wasms
 	@echo built to wasms/word_count_v2.wasm
 
-build: easyjson_wasm log_wasm gjson_wasm token_distribute_wasm word_count_v2_wasm word_count_wasm
+env_wasm:
+	@cd env && tinygo build -o env.wasm -scheduler=none --no-debug -target=wasi main.go
+	@mkdir -pv wasms && mv env/env.wasm wasms
+	@echo built to wasms/env.wasm
+
+build: easyjson_wasm log_wasm gjson_wasm token_distribute_wasm word_count_v2_wasm word_count_wasm env_wasm
 
 clean:
 	@rm -rf easyjson/easyjson.wasm
