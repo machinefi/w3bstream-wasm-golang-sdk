@@ -11,8 +11,13 @@ func main() {}
 
 //export start
 func _start(rid uint32) int32 {
-	key := "env-key"
-	val, err := stream.GetEnv(key)
+	key, err := stream.GetDataByRID(rid)
+	if err != nil {
+		log.Log("error: " + err.Error())
+		return -1
+	}
+
+	val, err := stream.GetEnv(string(key))
 	if err != nil {
 		log.Log(fmt.Sprintf("get env from host failed: %v", err))
 		return -1
