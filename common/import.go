@@ -25,6 +25,10 @@ func WS_set_db(kaddr, ksize, vaddr, vsize uint32) int32
 func WS_set_sql_db(ptr, size uint32) int32
 
 //go:wasm-module env
+//export ws_get_sql_db
+func WS_get_sql_db(ptr, size uint32, vaddr, vsize uint32) int32
+
+//go:wasm-module env
 //export ws_send_tx
 func WS_send_tx(kaddr, ksize uint32) (v int32)
 

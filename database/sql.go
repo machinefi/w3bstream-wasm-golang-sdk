@@ -2,6 +2,7 @@ package database
 
 import (
 	"errors"
+	"unsafe"
 
 	"github.com/machinefi/w3bstream-wasm-golang-sdk/common"
 	"github.com/mailru/easyjson"
@@ -26,6 +27,38 @@ func ExecSQL(query string, args ...SQLTypes) error {
 		return errors.New("fail to execute the sql query")
 	}
 	return nil
+}
+
+// Query example:
+// To query a new record could be done like below
+// result, err := database.QuerySQL("SELECT * FROM table WHERE ID =?;", database.Int32(0))
+func QuerySQL(query string, args ...SQLTypes) ([]byte, error) {
+	params := make([]*param, 0)
+	for _, v := range args {
+		params = append(params, v.getParam())
+	}
+	serializedQuery, err := easyjson.Marshal(&dBQuery{
+		Statement: query,
+		Params:    params,
+	})
+	if err != nil {
+		return nil, errors.New("incorrect sql query format")
+	}
+
+	addr, size := common.BytesToPointer(serializedQuery)
+	rAddr := uintptr(unsafe.Pointer(new(uint32)))
+	rSize := uintptr(unsafe.Pointer(new(uint32)))
+	if ret := common.WS_get_sql_db(addr, size, uint32(rAddr), uint32(rSize)); ret != 0 {
+		return nil, errors.New("fail to execute the sql query")
+	}
+
+	vaddr := *(*uint32)(unsafe.Pointer(rAddr))
+	m := common.Allocations.GetByAddr(vaddr)
+	if m == nil {
+		return nil, errors.New("fail to get the result of sql query")
+	}
+
+	return m.Data, nil
 }
 
 type SQLTypes interface {
