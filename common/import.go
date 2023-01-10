@@ -1,3 +1,5 @@
+//go:build tinygo
+
 package common
 
 //go:wasm-module env
