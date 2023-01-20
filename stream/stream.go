@@ -26,6 +26,12 @@ func GetDataByRID(rid uint32) ([]byte, error) {
 	return m.Data, nil
 }
 
+func SetDataByRID(rid uint32, data string) {
+	addr, size := common.StringToPointer(data)
+
+	_ = common.WS_set_data(rid, addr, size)
+}
+
 func GetEnv(key string) (string, error) {
 	kaddr, ksize := common.StringToPointer(key)
 
