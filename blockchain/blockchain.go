@@ -1,3 +1,5 @@
+//go:build tinygo
+
 package blockchain
 
 import "github.com/machinefi/w3bstream-wasm-golang-sdk/common"

@@ -1,3 +1,5 @@
+//go:build tinygo
+
 package common
 
 func NewMemory(size uint32) *Mem {
