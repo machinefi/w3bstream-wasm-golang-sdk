@@ -43,7 +43,12 @@ env_wasm:
 	@mkdir -pv wasms && mv env/env.wasm wasms
 	@echo built to wasms/env.wasm
 
-build: easyjson_wasm log_wasm gjson_wasm token_distribute_wasm word_count_v2_wasm word_count_wasm env_wasm
+stream_computing:
+	@cd stream_computing && tinygo build -o stream_computing.wasm -scheduler=none --no-debug -target=wasi main.go
+	@mkdir -pv wasms && mv stream_computing/stream_computing.wasm wasms
+	@echo built to wasms/stream_computing.wasm
+
+build: easyjson_wasm log_wasm gjson_wasm token_distribute_wasm word_count_v2_wasm word_count_wasm env_wasm stream_computing
 
 clean:
 	@rm -rf easyjson/easyjson.wasm
