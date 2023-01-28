@@ -13,6 +13,9 @@ easyjson_wasm: gen_wasm_json
 	@mkdir -pv wasms && mv easyjson/easyjson.wasm wasms
 	@echo built to wasms/easyjson.wasm
 
+gen_tesla_wasm_json: install_easyjson
+	@cd tesla_poc/model && go generate ./...
+
 log_wasm:
 	@cd log && tinygo build -o log.wasm -scheduler=none --no-debug -target=wasi log.go
 	@mkdir -pv wasms && mv log/log.wasm wasms
@@ -22,6 +25,11 @@ gjson_wasm:
 	@cd gjson && tinygo build -o gjson.wasm -scheduler=none --no-debug -target=wasi parse_json.go
 	@mkdir -pv wasms && mv gjson/gjson.wasm wasms
 	@echo built to wasms/gjson.wasm
+
+tesla_wasm: gen_tesla_wasm_json
+	@cd tesla_poc && tinygo build -o tesla.wasm -scheduler=none --no-debug -target=wasi parse_json.go
+	@mkdir -pv wasms && mv tesla_poc/tesla.wasm wasms
+	@echo built to wasms/tesla.wasm
 
 token_distribute_wasm:
 	@cd token_distribute && tinygo build -o token_distribute.wasm -scheduler=none --no-debug -target=wasi token_distribute.go
