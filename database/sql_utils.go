@@ -11,14 +11,14 @@ type (
 	}
 
 	param struct {
-		Int32   int32   `json:"int32,omitempty"`
-		Int64   int64   `json:"int64,omitempty"`
-		Float32 float32 `json:"float32,omitempty"`
-		Float64 float64 `json:"float64,omitempty"`
-		String  string  `json:"string,omitempty"`
-		Time    string  `json:"time,omitempty"` //  rfc3339 encoding
-		Bool    bool    `json:"bool,omitempty"`
-		Bytes   string  `json:"bytes,omitempty"` // base64 encoding
+		Int32   *int32   `json:"int32,omitempty"`
+		Int64   *int64   `json:"int64,omitempty"`
+		Float32 *float32 `json:"float32,omitempty"`
+		Float64 *float64 `json:"float64,omitempty"`
+		String  *string  `json:"string,omitempty"`
+		Time    *string  `json:"time,omitempty"` //  rfc3339 encoding
+		Bool    *bool    `json:"bool,omitempty"`
+		Bytes   *string  `json:"bytes,omitempty"` // base64 encoding
 	}
 )
 
@@ -28,7 +28,7 @@ type sqlInt32 struct {
 
 func (str *sqlInt32) getParam() *param {
 	return &param{
-		Int32: str.data,
+		Int32: &str.data,
 	}
 }
 
@@ -38,7 +38,7 @@ type sqlInt64 struct {
 
 func (str *sqlInt64) getParam() *param {
 	return &param{
-		Int64: str.data,
+		Int64: &str.data,
 	}
 }
 
@@ -48,7 +48,7 @@ type sqlFloat32 struct {
 
 func (str *sqlFloat32) getParam() *param {
 	return &param{
-		Float32: str.data,
+		Float32: &str.data,
 	}
 }
 
@@ -58,7 +58,7 @@ type sqlFloat64 struct {
 
 func (str *sqlFloat64) getParam() *param {
 	return &param{
-		Float64: str.data,
+		Float64: &str.data,
 	}
 }
 
@@ -68,7 +68,7 @@ type sqlString struct {
 
 func (str *sqlString) getParam() *param {
 	return &param{
-		String: str.data,
+		String: &str.data,
 	}
 }
 
@@ -78,7 +78,7 @@ type sqlBool struct {
 
 func (str *sqlBool) getParam() *param {
 	return &param{
-		Bool: str.data,
+		Bool: &str.data,
 	}
 }
 
@@ -86,9 +86,10 @@ type sqlBytes struct {
 	data []byte
 }
 
-func (str *sqlBytes) getParam() *param {
+func (b *sqlBytes) getParam() *param {
+	str := base64.StdEncoding.EncodeToString(b.data)
 	return &param{
-		Bytes: base64.StdEncoding.EncodeToString(str.data),
+		Bytes: &str,
 	}
 }
 

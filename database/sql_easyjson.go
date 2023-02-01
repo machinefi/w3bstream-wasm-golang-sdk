@@ -17,7 +17,420 @@ var (
 	_ easyjson.Marshaler
 )
 
-func easyjson6601e8cdDecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes(in *jlexer.Lexer, out *param) {
+func easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen(in *jlexer.Lexer, out *sqlString) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen(out *jwriter.Writer, in sqlString) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v sqlString) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v sqlString) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *sqlString) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *sqlString) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen(l, v)
+}
+func easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen1(in *jlexer.Lexer, out *sqlInt64) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen1(out *jwriter.Writer, in sqlInt64) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v sqlInt64) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen1(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v sqlInt64) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen1(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *sqlInt64) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen1(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *sqlInt64) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen1(l, v)
+}
+func easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen2(in *jlexer.Lexer, out *sqlInt32) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen2(out *jwriter.Writer, in sqlInt32) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v sqlInt32) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen2(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v sqlInt32) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen2(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *sqlInt32) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen2(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *sqlInt32) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen2(l, v)
+}
+func easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen3(in *jlexer.Lexer, out *sqlFloat64) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen3(out *jwriter.Writer, in sqlFloat64) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v sqlFloat64) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen3(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v sqlFloat64) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen3(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *sqlFloat64) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen3(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *sqlFloat64) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen3(l, v)
+}
+func easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen4(in *jlexer.Lexer, out *sqlFloat32) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen4(out *jwriter.Writer, in sqlFloat32) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v sqlFloat32) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen4(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v sqlFloat32) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen4(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *sqlFloat32) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen4(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *sqlFloat32) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen4(l, v)
+}
+func easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen5(in *jlexer.Lexer, out *sqlBytes) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen5(out *jwriter.Writer, in sqlBytes) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v sqlBytes) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen5(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v sqlBytes) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen5(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *sqlBytes) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen5(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *sqlBytes) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen5(l, v)
+}
+func easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen6(in *jlexer.Lexer, out *sqlBool) {
+	isTopLevel := in.IsStart()
+	if in.IsNull() {
+		if isTopLevel {
+			in.Consumed()
+		}
+		in.Skip()
+		return
+	}
+	in.Delim('{')
+	for !in.IsDelim('}') {
+		key := in.UnsafeFieldName(false)
+		in.WantColon()
+		if in.IsNull() {
+			in.Skip()
+			in.WantComma()
+			continue
+		}
+		switch key {
+		default:
+			in.SkipRecursive()
+		}
+		in.WantComma()
+	}
+	in.Delim('}')
+	if isTopLevel {
+		in.Consumed()
+	}
+}
+func easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen6(out *jwriter.Writer, in sqlBool) {
+	out.RawByte('{')
+	first := true
+	_ = first
+	out.RawByte('}')
+}
+
+// MarshalJSON supports json.Marshaler interface
+func (v sqlBool) MarshalJSON() ([]byte, error) {
+	w := jwriter.Writer{}
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen6(&w, v)
+	return w.Buffer.BuildBytes(), w.Error
+}
+
+// MarshalEasyJSON supports easyjson.Marshaler interface
+func (v sqlBool) MarshalEasyJSON(w *jwriter.Writer) {
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen6(w, v)
+}
+
+// UnmarshalJSON supports json.Unmarshaler interface
+func (v *sqlBool) UnmarshalJSON(data []byte) error {
+	r := jlexer.Lexer{Data: data}
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen6(&r, v)
+	return r.Error()
+}
+
+// UnmarshalEasyJSON supports easyjson.Unmarshaler interface
+func (v *sqlBool) UnmarshalEasyJSON(l *jlexer.Lexer) {
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen6(l, v)
+}
+func easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen7(in *jlexer.Lexer, out *param) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -37,21 +450,85 @@ func easyjson6601e8cdDecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes
 		}
 		switch key {
 		case "int32":
-			out.Int32 = int32(in.Int32())
+			if in.IsNull() {
+				in.Skip()
+				out.Int32 = nil
+			} else {
+				if out.Int32 == nil {
+					out.Int32 = new(int32)
+				}
+				*out.Int32 = int32(in.Int32())
+			}
 		case "int64":
-			out.Int64 = int64(in.Int64())
+			if in.IsNull() {
+				in.Skip()
+				out.Int64 = nil
+			} else {
+				if out.Int64 == nil {
+					out.Int64 = new(int64)
+				}
+				*out.Int64 = int64(in.Int64())
+			}
 		case "float32":
-			out.Float32 = float32(in.Float32())
+			if in.IsNull() {
+				in.Skip()
+				out.Float32 = nil
+			} else {
+				if out.Float32 == nil {
+					out.Float32 = new(float32)
+				}
+				*out.Float32 = float32(in.Float32())
+			}
 		case "float64":
-			out.Float64 = float64(in.Float64())
+			if in.IsNull() {
+				in.Skip()
+				out.Float64 = nil
+			} else {
+				if out.Float64 == nil {
+					out.Float64 = new(float64)
+				}
+				*out.Float64 = float64(in.Float64())
+			}
 		case "string":
-			out.String = string(in.String())
+			if in.IsNull() {
+				in.Skip()
+				out.String = nil
+			} else {
+				if out.String == nil {
+					out.String = new(string)
+				}
+				*out.String = string(in.String())
+			}
 		case "time":
-			out.Time = string(in.String())
+			if in.IsNull() {
+				in.Skip()
+				out.Time = nil
+			} else {
+				if out.Time == nil {
+					out.Time = new(string)
+				}
+				*out.Time = string(in.String())
+			}
 		case "bool":
-			out.Bool = bool(in.Bool())
+			if in.IsNull() {
+				in.Skip()
+				out.Bool = nil
+			} else {
+				if out.Bool == nil {
+					out.Bool = new(bool)
+				}
+				*out.Bool = bool(in.Bool())
+			}
 		case "bytes":
-			out.Bytes = string(in.String())
+			if in.IsNull() {
+				in.Skip()
+				out.Bytes = nil
+			} else {
+				if out.Bytes == nil {
+					out.Bytes = new(string)
+				}
+				*out.Bytes = string(in.String())
+			}
 		default:
 			in.SkipRecursive()
 		}
@@ -62,17 +539,17 @@ func easyjson6601e8cdDecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes
 		in.Consumed()
 	}
 }
-func easyjson6601e8cdEncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes(out *jwriter.Writer, in param) {
+func easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen7(out *jwriter.Writer, in param) {
 	out.RawByte('{')
 	first := true
 	_ = first
-	if in.Int32 != 0 {
+	if in.Int32 != nil {
 		const prefix string = ",\"int32\":"
 		first = false
 		out.RawString(prefix[1:])
-		out.Int32(int32(in.Int32))
+		out.Int32(int32(*in.Int32))
 	}
-	if in.Int64 != 0 {
+	if in.Int64 != nil {
 		const prefix string = ",\"int64\":"
 		if first {
 			first = false
@@ -80,9 +557,9 @@ func easyjson6601e8cdEncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes
 		} else {
 			out.RawString(prefix)
 		}
-		out.Int64(int64(in.Int64))
+		out.Int64(int64(*in.Int64))
 	}
-	if in.Float32 != 0 {
+	if in.Float32 != nil {
 		const prefix string = ",\"float32\":"
 		if first {
 			first = false
@@ -90,9 +567,9 @@ func easyjson6601e8cdEncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes
 		} else {
 			out.RawString(prefix)
 		}
-		out.Float32(float32(in.Float32))
+		out.Float32(float32(*in.Float32))
 	}
-	if in.Float64 != 0 {
+	if in.Float64 != nil {
 		const prefix string = ",\"float64\":"
 		if first {
 			first = false
@@ -100,9 +577,9 @@ func easyjson6601e8cdEncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes
 		} else {
 			out.RawString(prefix)
 		}
-		out.Float64(float64(in.Float64))
+		out.Float64(float64(*in.Float64))
 	}
-	if in.String != "" {
+	if in.String != nil {
 		const prefix string = ",\"string\":"
 		if first {
 			first = false
@@ -110,9 +587,9 @@ func easyjson6601e8cdEncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes
 		} else {
 			out.RawString(prefix)
 		}
-		out.String(string(in.String))
+		out.String(string(*in.String))
 	}
-	if in.Time != "" {
+	if in.Time != nil {
 		const prefix string = ",\"time\":"
 		if first {
 			first = false
@@ -120,9 +597,9 @@ func easyjson6601e8cdEncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes
 		} else {
 			out.RawString(prefix)
 		}
-		out.String(string(in.Time))
+		out.String(string(*in.Time))
 	}
-	if in.Bool {
+	if in.Bool != nil {
 		const prefix string = ",\"bool\":"
 		if first {
 			first = false
@@ -130,9 +607,9 @@ func easyjson6601e8cdEncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes
 		} else {
 			out.RawString(prefix)
 		}
-		out.Bool(bool(in.Bool))
+		out.Bool(bool(*in.Bool))
 	}
-	if in.Bytes != "" {
+	if in.Bytes != nil {
 		const prefix string = ",\"bytes\":"
 		if first {
 			first = false
@@ -140,7 +617,7 @@ func easyjson6601e8cdEncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes
 		} else {
 			out.RawString(prefix)
 		}
-		out.String(string(in.Bytes))
+		out.String(string(*in.Bytes))
 	}
 	out.RawByte('}')
 }
@@ -148,27 +625,27 @@ func easyjson6601e8cdEncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes
 // MarshalJSON supports json.Marshaler interface
 func (v param) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson6601e8cdEncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes(&w, v)
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen7(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v param) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson6601e8cdEncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes(w, v)
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen7(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *param) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson6601e8cdDecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes(&r, v)
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen7(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *param) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson6601e8cdDecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes(l, v)
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen7(l, v)
 }
-func easyjson6601e8cdDecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes1(in *jlexer.Lexer, out *dBQuery) {
+func easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen8(in *jlexer.Lexer, out *dBQuery) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -230,7 +707,7 @@ func easyjson6601e8cdDecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes
 		in.Consumed()
 	}
 }
-func easyjson6601e8cdEncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes1(out *jwriter.Writer, in dBQuery) {
+func easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen8(out *jwriter.Writer, in dBQuery) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -265,23 +742,23 @@ func easyjson6601e8cdEncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes
 // MarshalJSON supports json.Marshaler interface
 func (v dBQuery) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjson6601e8cdEncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes1(&w, v)
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen8(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v dBQuery) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjson6601e8cdEncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes1(w, v)
+	easyjson19d441a8EncodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen8(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *dBQuery) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjson6601e8cdDecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes1(&r, v)
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen8(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *dBQuery) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjson6601e8cdDecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseTypes1(l, v)
+	easyjson19d441a8DecodeGithubComMachinefiW3bstreamWasmGolangSdkDatabaseGen8(l, v)
 }

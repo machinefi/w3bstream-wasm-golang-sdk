@@ -18,6 +18,16 @@ log_wasm:
 	@mkdir -pv wasms && mv log/log.wasm wasms
 	@echo built to wasms/log.wasm
 
+kv_wasm:
+	@cd kv && tinygo build -o kv.wasm -scheduler=none --no-debug -target=wasi main.go
+	@mkdir -pv wasms && mv kv/kv.wasm wasms
+	@echo built to wasms/kv.wasm
+
+sql_wasm:
+	@cd sql && tinygo build -o sql.wasm -scheduler=none --no-debug -target=wasi main.go
+	@mkdir -pv wasms && mv sql/sql.wasm wasms
+	@echo built to wasms/sql.wasm
+
 gjson_wasm:
 	@cd gjson && tinygo build -o gjson.wasm -scheduler=none --no-debug -target=wasi parse_json.go
 	@mkdir -pv wasms && mv gjson/gjson.wasm wasms
@@ -33,11 +43,6 @@ word_count_wasm:
 	@mkdir -pv wasms && mv word_count/word_count.wasm wasms
 	@echo built to wasms/word_count.wasm
 
-word_count_v2_wasm:
-	@cd word_count_v2 && tinygo build -o word_count_v2.wasm -scheduler=none --no-debug -target=wasi word_count_v2.go
-	@mkdir -pv wasms && mv word_count_v2/word_count_v2.wasm wasms
-	@echo built to wasms/word_count_v2.wasm
-
 env_wasm:
 	@cd env && tinygo build -o env.wasm -scheduler=none --no-debug -target=wasi main.go
 	@mkdir -pv wasms && mv env/env.wasm wasms
@@ -48,7 +53,7 @@ stream_computing_wasm:
 	@mkdir -pv wasms && mv stream_computing/stream_computing.wasm wasms
 	@echo built to wasms/stream_computing.wasm
 
-build: easyjson_wasm log_wasm gjson_wasm token_distribute_wasm word_count_v2_wasm word_count_wasm env_wasm stream_computing_wasm
+build: easyjson_wasm log_wasm gjson_wasm token_distribute_wasm kv_wasm sql_wasm word_count_wasm env_wasm stream_computing_wasm
 
 clean:
 	@rm -rf easyjson/easyjson.wasm

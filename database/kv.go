@@ -1,42 +1,37 @@
 package database
 
 import (
-	"bytes"
-	"encoding/binary"
+	"errors"
 	"unsafe"
 
 	"github.com/machinefi/w3bstream-wasm-golang-sdk/common"
 )
 
-func GetDB(key string) int32 {
+func Get(key string) ([]byte, error) {
 	addr, size := common.StringToPointer(key)
 
 	rAddr := uintptr(unsafe.Pointer(new(uint32)))
 	rSize := uintptr(unsafe.Pointer(new(uint32)))
 
 	if ret := common.WS_get_db(addr, size, uint32(rAddr), uint32(rSize)); ret != 0 {
-		return 0
+		return nil, errors.New("fail to get the data from db")
 	}
 
 	vaddr := *(*uint32)(unsafe.Pointer(rAddr))
 	m := common.Allocations.GetByAddr(vaddr)
 	if m == nil {
-		return 0
+		return nil, errors.New("fail to get the data from db")
 	}
 
-	var ret int32
-	buf := bytes.NewBuffer(m.Data)
-	binary.Read(buf, binary.LittleEndian, &ret)
-	return ret
+	return m.Data, nil
 }
 
-func SetDB(key string, v int32) {
+func Set(key string, value []byte) error {
 	addr, size := common.StringToPointer(key)
+	vaddr, vsize := common.BytesToPointer(value)
 
-	buf := new(bytes.Buffer)
-	binary.Write(buf, binary.LittleEndian, v)
-	vaddr, vsize := common.BytesToPointer(buf.Bytes())
-
-	// TODO: error handle
-	_ = common.WS_set_db(addr, size, vaddr, vsize)
+	if ret := common.WS_set_db(addr, size, vaddr, vsize); ret != 0 {
+		return errors.New("fail to set the data into db")
+	}
+	return nil
 }
