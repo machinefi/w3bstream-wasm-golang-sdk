@@ -1,3 +1,5 @@
+//go:build tinygo
+
 package common
 
 //go:wasm-module env
@@ -39,3 +41,7 @@ func WS_call_contract(chainID uint32, kaddr, ksize uint32, vaddr, vsize uint32) 
 //go:wasm-module env
 //export ws_get_env
 func WS_get_env(kaddr, ksize, vaddr, vsize uint32) int32
+
+//go:wasm-module env
+//export ws_get_mqtt_msg
+func WS_get_mqtt_msg(rid, topicaddr, topicsize, pladdr, plsize uint32) int32

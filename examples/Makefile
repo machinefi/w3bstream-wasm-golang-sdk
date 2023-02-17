@@ -53,7 +53,12 @@ stream_computing_wasm:
 	@mkdir -pv wasms && mv stream_computing/stream_computing.wasm wasms
 	@echo built to wasms/stream_computing.wasm
 
-build: easyjson_wasm log_wasm gjson_wasm token_distribute_wasm kv_wasm sql_wasm word_count_wasm env_wasm stream_computing_wasm
+mqtt_wasm:
+	@cd mqtt && tinygo build -o mqtt.wasm -scheduler=none --no-debug -target=wasi mqtt.go
+	@mkdir -pv wasms && mv mqtt/mqtt.wasm wasms
+	@echo built to wasms/mqtt.wasm
+
+build: easyjson_wasm log_wasm gjson_wasm token_distribute_wasm kv_wasm sql_wasm word_count_wasm env_wasm stream_computing_wasm mqtt_wasm
 
 clean:
 	@rm -rf easyjson/easyjson.wasm
