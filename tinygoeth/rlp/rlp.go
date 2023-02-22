@@ -81,7 +81,7 @@ func Bool(b bool) Data {
 }
 
 // NewList creates a new empty RLP List element
-func NewList() List {
+func NewList() Element {
 	return List{}
 }
 
