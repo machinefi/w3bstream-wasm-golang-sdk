@@ -28,20 +28,34 @@ func (s *simple) MarshalRLP() ([]byte, error) {
 }
 
 func (s *simple) UnmarshalRLP(buf []byte) error {
-	decoded, pos, err := Decode(buf)
+	elems, pos, err := Decode(buf)
 	if err != nil {
 		return err
+	}
+	getElem := func() Element {
+		if elems.IsList() {
+			elem := elems.(List)[0]
+			elems = elems.(List)[1:]
+			return elem
+		}
+		return elems
 	}
 	if pos != len(buf) {
 		return errors.New("invalid rlp")
 	}
-	if decoded.IsList() {
-		s.Data1 = []byte(decoded.(List)[0].(Data))
-		s.Data2 = [][]byte{
-			[]byte(decoded.(List)[1].(List)[0].(Data)),
-			[]byte(decoded.(List)[1].(List)[1].(Data)),
+	if elems.IsList() {
+		s.Data1 = []byte(getElem().(Data))
+		ele := getElem()
+		if !ele.IsList() {
+			return errors.New("invalid rlp")
 		}
-		s.Data3 = uint64(decoded.(List)[2].(Data)[0])
+		for _, e := range ele.(List) {
+			if e.IsList() {
+				return errors.New("invalid rlp")
+			}
+			s.Data2 = append(s.Data2, []byte(e.(Data)))
+		}
+		s.Data3 = uint64(getElem().(Data).Uint())
 	} else {
 		return errors.New("invalid rlp")
 	}
@@ -186,17 +200,17 @@ func testRLP() error {
 
 	// stringlist
 	v = NewList()
-	v = v.Set(String("dog")).Set(String("god")).Set(String("cat"))
+	v = v.Add(String("dog")).Add(String("god")).Add(String("cat"))
 	if err := validate(v, "0xcc83646f6783676f6483636174"); err != nil {
 		return err
 	}
 
 	// multilist
 	v = NewList()
-	v = v.Set(String("zw"))
-	vv := NewList().Set(Int(4))
-	v = v.Set(vv)
-	v = v.Set(Int(1))
+	v = v.Add(String("zw"))
+	vv := NewList().Add(Int(4))
+	v = v.Add(vv)
+	v = v.Add(Int(1))
 	if err := validate(v, "0xc6827a77c10401"); err != nil {
 		return err
 	}
@@ -255,5 +269,104 @@ func TestUnMarshalRLP(t *testing.T) {
 	}
 	if s.Data3 != 0x0a {
 		t.Fatal("unexpected result")
+	}
+}
+
+func TestDecodeTX(t *testing.T) {
+
+	// Sample (legacy) transaction info
+	// {
+	// 	blockHash: "0xf792398ef0d5fbd4cccff85778032ce17074123eb143e6c658e544bc1b76ff4f",
+	// 	blockNumber: 4,
+	// 	from: "0x5d093e9b41911be5f5c4cf91b108bac5d130fa83",
+	// 	gas: 40574,
+	// 	gasPrice: 0,
+	// 	hash: "0xea4bf65ee1f2ae6df7259676f4dc30e28a879fa7e7519a86c2ed6b9c59a544d8",
+	// 	input: "0x ... see below",
+	// 	nonce: 3,
+	// 	r: "0x2e6e9728373680d0a7d75f99697d3887069dd5db4b9581c42bfb5749fb5fc80",
+	// 	s: "0x32e8717112b372f41c4a2a46ad0ea807f56645990130cbbc60614f2240a3a1a",
+	// 	to: "0x497eedc4299dea2f2a364be10025d0ad0f702de3",
+	// 	transactionIndex: 0,
+	// 	type: "0x0",
+	// 	v: "0xfee",
+	// 	value: 0
+	// }
+
+	// The raw transaction
+	encoded, err := hex.DecodeString(
+		"f901e70380829e7e94497eedc4299dea2f2a364be10025d0ad0f702de380b901843674e15c00000000000000000000000000000000000000000000000000000000000000a03f04a4e93ded4d2aaa1a41d617e55c59ac5f1b28a47047e2a526e76d45eb9681d19642e9120d63a9b7f5f537565a430d8ad321ef1bc76689a4b3edc861c640fc00000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000000000000000000140000000000000000000000000000000000000000000000000000000000000000966665f73797374656d0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002e516d58747653456758626265506855684165364167426f3465796a7053434b437834515a4c50793548646a6177730000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001a1f7502c8f8797999c0c6b9c2da653ea736598ed0daa856c47ae71411aa8fea2820feea002e6e9728373680d0a7d75f99697d3887069dd5db4b9581c42bfb5749fb5fc80a0032e8717112b372f41c4a2a46ad0ea807f56645990130cbbc60614f2240a3a1a")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// The input data
+	inputData, err := hex.DecodeString(
+		"3674e15c00000000000000000000000000000000000000000000000000000000000000a03f04a4e93ded4d2aaa1a41d617e55c59ac5f1b28a47047e2a526e76d45eb9681d19642e9120d63a9b7f5f537565a430d8ad321ef1bc76689a4b3edc861c640fc00000000000000000000000000000000000000000000000000000000000000e00000000000000000000000000000000000000000000000000000000000000140000000000000000000000000000000000000000000000000000000000000000966665f73797374656d0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002e516d58747653456758626265506855684165364167426f3465796a7053434b437834515a4c50793548646a6177730000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001a1f7502c8f8797999c0c6b9c2da653ea736598ed0daa856c47ae71411aa8fea2")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	elem, next, err := Decode(encoded)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if next != len(encoded) {
+		t.Fatalf("expected %d, got %d", len(encoded), next)
+	}
+	rlpList := elem.(List)
+	if len(rlpList) != 9 {
+		t.Fatalf("expected 9, got %d", len(rlpList))
+	}
+	// Nonce
+	if rlpList[0].(Data).Int().Int64() != 3 {
+		t.Fatalf("expected 3, got %d", rlpList[0].(Data).Int().Int64())
+	}
+	// Gas Price
+	if rlpList[1].(Data).Int().Int64() != 0 {
+		t.Fatalf("expected 0, got %d", rlpList[1].(Data).Int().Int64())
+	}
+	// Gas Limit
+	if rlpList[2].(Data).Int().Int64() != 40574 {
+		t.Fatalf("expected 40574, got %d", rlpList[2].(Data).Int().Int64())
+	}
+	// To
+	if rlpList[3].(Data).Hex() != "497eedc4299dea2f2a364be10025d0ad0f702de3" {
+		t.Fatalf("expected 0x497eedc4299dea2f2a364be10025d0ad0f702de3, got %s", rlpList[3].(Data).Hex())
+	}
+
+	// Value
+	if rlpList[4].(Data).Int().Int64() != 0 {
+		t.Fatalf("expected 0, got %d", rlpList[4].(Data).Int().Int64())
+	}
+	// Data
+	if !bytes.Equal(inputData, []byte(rlpList[5].(Data))) {
+		t.Fatalf("expected %x, got %x", inputData, []byte(rlpList[5].(Data)))
+	}
+	// V
+	if rlpList[6].(Data).Hex() != "0fee" {
+		t.Fatalf("expected 0fee, got %s", rlpList[6].(Data).Hex())
+	}
+	// R
+	if rlpList[7].(Data).Hex() != "02e6e9728373680d0a7d75f99697d3887069dd5db4b9581c42bfb5749fb5fc80" {
+		t.Fatalf("expected 0x02e6e9728373680d0a7d75f99697d3887069dd5db4b9581c42bfb5749fb5fc80, got %s", rlpList[7].(Data).Hex())
+	}
+	// S
+	if rlpList[8].(Data).Hex() != "032e8717112b372f41c4a2a46ad0ea807f56645990130cbbc60614f2240a3a1a" {
+		t.Fatalf("expected 032e8717112b372f41c4a2a46ad0ea807f56645990130cbbc60614f2240a3a1a, got %s", rlpList[8].(Data).Hex())
+	}
+}
+
+func BenchmarkRLP_SingleThreaded(b *testing.B) {
+	for i := 0; i != b.N; i++ {
+		s := &simple{
+			Data1: []byte{0x01, 0x02, 0x03},
+			Data2: [][]byte{
+				[]byte{0x04, 0x05, 0x06},
+				[]byte{0x07, 0x08, 0x09},
+			},
+			Data3: 0x0a,
+		}
+		MarshalRLP(s)
 	}
 }

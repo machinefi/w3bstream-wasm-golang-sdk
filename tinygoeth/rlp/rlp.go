@@ -48,8 +48,8 @@ type Element interface {
 	IsList() bool
 	// Encode converts the element to a byte array
 	Encode() []byte
-	//Set adds an element to the list
-	Set(v Element) Element
+	//Add adds an element to the list
+	Add(v Element) Element
 }
 
 // Int converts an integer to an RLP Data element for encoding
@@ -117,8 +117,8 @@ func (r Data) Encode() []byte {
 	return encodeBytes(r, false)
 }
 
-// Set adds an element to the list
-func (r Data) Set(v Element) Element {
+// Add adds an element to the list
+func (r Data) Add(v Element) Element {
 	panic("cannot set on data")
 }
 
@@ -175,7 +175,7 @@ func (l List) IsList() bool {
 	return true
 }
 
-// Set adds an element to the list
-func (l List) Set(v Element) Element {
+// Add adds an element to the list
+func (l List) Add(v Element) Element {
 	return append(l, v)
 }
