@@ -22,12 +22,8 @@ func (s *simple) MarshalRLP() ([]byte, error) {
 	for _, d := range s.Data2 {
 		data2 = data2.Add(rlp.Data(d))
 	}
-	a := rlp.List{
-		rlp.Data(s.Data1),
-		data2,
-		rlp.Int(s.Data3),
-	}.Encode()
-	return a, nil
+	data := rlp.NewList().Add(rlp.Data(s.Data1)).Add(data2).Add(rlp.Int(s.Data3))
+	return data.Encode(), nil
 }
 
 // UnmarshalRLP implements rlp.Unmarshaler, and loads the s fields from a RLP message.
