@@ -53,7 +53,12 @@ type Element interface {
 }
 
 // Int converts an integer to an RLP Data element for encoding
-func Int[T Integer | Unsigned](i T) Data {
+func Int[T Integer](i T) Data {
+	return BigInt(new(big.Int).SetInt64(int64(i)))
+}
+
+// Uint converts an unsigned integer to an RLP Data element for encoding
+func Uint[T Unsigned](i T) Data {
 	return BigInt(new(big.Int).SetUint64(uint64(i)))
 }
 

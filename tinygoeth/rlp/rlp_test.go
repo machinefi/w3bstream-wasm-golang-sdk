@@ -22,7 +22,7 @@ func (s *simple) MarshalRLP() ([]byte, error) {
 			Data(s.Data2[0]),
 			Data(s.Data2[1]),
 		},
-		Int(s.Data3),
+		Uint(s.Data3),
 	}.Encode()
 	return a, nil
 }
