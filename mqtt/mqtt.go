@@ -3,6 +3,7 @@
 package mqtt
 
 import (
+	"errors"
 	"fmt"
 	"unsafe"
 
@@ -31,4 +32,14 @@ func GetMqttMsg(rid uint32) (string, []byte, error) {
 		return "", nil, fmt.Errorf("get payload failed: [rid:%d] [payload:%d]", rid, addr)
 	}
 	return string(memtopic.Data), mempl.Data, nil
+}
+
+func SendMqttMsg(topic, playload string) error {
+	topicAddr, topicSize := common.StringToPointer(topic)
+	msgAddr, msgSize := common.StringToPointer(playload)
+
+	if ret := common.WS_send_mqtt_msg(topicAddr, topicSize, msgAddr, msgSize); ret != 0 {
+		return errors.New("fail to send message to mqtt")
+	}
+	return nil
 }

@@ -45,3 +45,7 @@ func WS_get_env(kaddr, ksize, vaddr, vsize uint32) int32
 //go:wasm-module env
 //export ws_get_mqtt_msg
 func WS_get_mqtt_msg(rid, topicaddr, topicsize, pladdr, plsize uint32) int32
+
+//go:wasm-module env
+//export ws_send_mqtt_msg
+func WS_send_mqtt_msg(topicAddr, topicSize, msgAddr, msgSize uint32) int32
