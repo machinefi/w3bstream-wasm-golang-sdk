@@ -34,7 +34,7 @@ func GetMqttMsg(rid uint32) (string, []byte, error) {
 	return string(memtopic.Data), mempl.Data, nil
 }
 
-func SendMqttMsg(topic, playload string) error {
+func SendMqttMsg(topic, payload string) error {
 	topicAddr, topicSize := common.StringToPointer(topic)
 	msgAddr, msgSize := common.StringToPointer(playload)
 
