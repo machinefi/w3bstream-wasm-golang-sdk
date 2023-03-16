@@ -26,17 +26,21 @@ func GetMqttMsg(rid uint32) (string, []byte, error) {
 	if memtopic == nil {
 		return "", nil, fmt.Errorf("get topic failed: [rid:%d] [topic:%d]", rid, addr)
 	}
+	topic := string(memtopic.Data)
+
 	addr = *(*uint32)(unsafe.Pointer(pladdr))
 	mempl := common.Allocations.GetByAddr(addr)
 	if mempl == nil {
-		return "", nil, fmt.Errorf("get payload failed: [rid:%d] [payload:%d]", rid, addr)
+		return topic, nil, nil
 	}
-	return string(memtopic.Data), mempl.Data, nil
+	payload := mempl.Data
+
+	return topic, payload, nil
 }
 
-func SendMqttMsg(topic, playload string) error {
+func SendMqttMsg(topic string, payload []byte) error {
 	topicAddr, topicSize := common.StringToPointer(topic)
-	msgAddr, msgSize := common.StringToPointer(playload)
+	msgAddr, msgSize := common.BytesToPointer(payload)
 
 	if ret := common.WS_send_mqtt_msg(topicAddr, topicSize, msgAddr, msgSize); ret != 0 {
 		return errors.New("fail to send message to mqtt")
