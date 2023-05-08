@@ -35,6 +35,10 @@ func WS_get_sql_db(ptr, size uint32, vaddr, vsize uint32) int32
 func WS_send_tx(chainID uint32, kaddr, ksize uint32, vaddr, vsize uint32) (v int32)
 
 //go:wasm-module env
+//export ws_send_tx_with_private_key
+func WS_send_tx_with_private_key(chainID uint32, kaddr, ksize uint32, vaddr, vsize uint32) (v int32)
+
+//go:wasm-module env
 //export ws_call_contract
 func WS_call_contract(chainID uint32, kaddr, ksize uint32, vaddr, vsize uint32) (v int32)
 
