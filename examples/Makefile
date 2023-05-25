@@ -28,6 +28,11 @@ sql_wasm:
 	@mkdir -pv wasms && mv sql/sql.wasm wasms
 	@echo built to wasms/sql.wasm
 
+crypto_wasm:
+	@cd crypto && tinygo build -o crypto.wasm -scheduler=none --no-debug -target=wasi main.go
+	@mkdir -pv wasms && mv crypto/crypto.wasm wasms
+	@echo built to wasms/crypto.wasm
+
 gjson_wasm:
 	@cd gjson && tinygo build -o gjson.wasm -scheduler=none --no-debug -target=wasi parse_json.go
 	@mkdir -pv wasms && mv gjson/gjson.wasm wasms
