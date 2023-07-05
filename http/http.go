@@ -25,7 +25,7 @@ func Do(req *http.Request) (*http.Response, error) {
 	rAddr := uintptr(unsafe.Pointer(new(uint32)))
 	rSize := uintptr(unsafe.Pointer(new(uint32)))
 
-	if ret := common.WS_function_call(addr, size, uint32(rAddr), uint32(rSize)); ret != 0 {
+	if ret := common.WS_api_call(addr, size, uint32(rAddr), uint32(rSize)); ret != 0 {
 		return nil, errors.New("fail to get the data from host")
 	}
 

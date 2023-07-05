@@ -19,8 +19,8 @@ func WS_set_data(rid, ptr, size uint32) int32
 func WS_get_db(kaddr, ksize, ptr, size uint32) int32
 
 //go:wasm-module env
-//export ws_function_call
-func WS_function_call(kaddr, ksize, ptr, size uint32) int32
+//export ws_api_call
+func WS_api_call(kaddr, ksize, ptr, size uint32) int32
 
 //go:wasm-module env
 //export ws_set_db
