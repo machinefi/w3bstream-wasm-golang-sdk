@@ -1,4 +1,4 @@
-package http
+package api
 
 import (
 	"bufio"
@@ -10,9 +10,24 @@ import (
 	"github.com/machinefi/w3bstream-wasm-golang-sdk/common"
 )
 
-func Do(req *http.Request) (*http.Response, error) {
-	req.URL.Host = "w3bstream.com"
-	req.URL.Scheme = "w3bstream"
+const (
+	host   = "w3bstream.com"
+	scheme = "w3bstream"
+)
+
+func Call(req *http.Request) (*http.Response, error) {
+	if req.URL.Host == "" {
+		req.URL.Host = host
+	}
+	if req.URL.Scheme == "" {
+		req.URL.Scheme = scheme
+	}
+	if req.URL.Host != host {
+		return nil, errors.New("invalid host")
+	}
+	if req.URL.Scheme != scheme {
+		return nil, errors.New("invalid scheme")
+	}
 
 	var buf bytes.Buffer
 

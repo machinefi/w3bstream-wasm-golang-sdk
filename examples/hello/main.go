@@ -2,9 +2,9 @@ package main
 
 import (
 	"bytes"
-	gohttp "net/http"
+	"net/http"
 
-	"github.com/machinefi/w3bstream-wasm-golang-sdk/http"
+	"github.com/machinefi/w3bstream-wasm-golang-sdk/api"
 	"github.com/machinefi/w3bstream-wasm-golang-sdk/log"
 )
 
@@ -12,13 +12,13 @@ func main() {}
 
 //export start
 func _start(rid uint32) int32 {
-	req, err := gohttp.NewRequest("GET", "/system/hello", nil)
+	req, err := http.NewRequest("GET", "/system/hello", nil)
 	if err != nil {
 		return -1
 	}
 	req.Header.Set("name", "w3bstream")
 
-	resp, err := http.Do(req)
+	resp, err := api.Call(req)
 	if err != nil {
 		return -1
 	}
