@@ -15,7 +15,7 @@ build_examples:
 	do \
 		if [ -d $$prj ] && [ $$prj != "wasms" ]; then \
 			cd $$prj && echo "\033[32mbuilding $$prj ... \033[0m" ; \
-			tinygo build -o $$prj.wasm -scheduler=none --no-debug -target=wasi ; \
+			tinygo build -o $$prj.wasm --no-debug -target=wasi ; \
 			mv $$prj.wasm ../wasms ; cd ..; \
 			echo "\033[31mdone!\033[0m"; \
 		fi \
