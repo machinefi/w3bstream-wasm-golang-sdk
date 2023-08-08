@@ -71,3 +71,37 @@ Read a evm-compatible blockchain's transaction.
    }
 }
 ```
+
+# Send Solana Transaction
+
+Send solana chain transaction.
+
+**example** : examples/send_solana_tx/main.go
+
+**URL** : `/system/send_tx`
+
+**Method** : `POST`
+
+## Success Response
+
+**Code** : `200 OK`  
+**Code** : `400 Bad Request`  
+**Code** : `500 Internal Server Error`  
+
+**Request examples**
+
+```json
+{
+   "chainName":"solana-devnet",
+   "operatorName":"solana-key",
+   "data":"[{\"ProgramID\":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],\"Accounts\":[{\"PubKey\":[91,83,29,193,46,31,234,109,208,211,168,16,189,248,144,184,82,206,5,207,47,237,60,0,252,70,215,201,95,8,82,113],\"IsSigner\":true,\"IsWritable\":true},{\"PubKey\":[91,83,29,193,46,31,234,109,208,211,168,16,189,248,144,184,82,206,5,207,47,237,60,0,252,70,215,201,95,8,82,113],\"IsSigner\":false,\"IsWritable\":true}],\"Data\":\"AgAAAAEAAAAAAAAA\"}]"
+}
+```
+
+**Response examples**
+
+```json
+{
+   "to":"5FYQ3TEG56TaYfUC7UohgAmNR6cuSQCJA9eiwzMxwXXpxsi2FvAK2bxm9oCZLLRzZiYEVwozn2MBmHnmR2mXqd99"
+}
+```
