@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/machinefi/w3bstream-wasm-golang-sdk/api"
 	"github.com/machinefi/w3bstream-wasm-golang-sdk/common"
@@ -15,12 +16,13 @@ func main() {}
 
 //export start
 func _start(rid uint32) int32 {
-	req, err := http.NewRequest("GET", "/system/hello", nil)
+	data := `{"chainName": "solana-devnet","operatorName": "solana-key","data": "[{\"ProgramID\":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],\"Accounts\":[{\"PubKey\":[91,83,29,193,46,31,234,109,208,211,168,16,189,248,144,184,82,206,5,207,47,237,60,0,252,70,215,201,95,8,82,113],\"IsSigner\":true,\"IsWritable\":true},{\"PubKey\":[91,83,29,193,46,31,234,109,208,211,168,16,189,248,144,184,82,206,5,207,47,237,60,0,252,70,215,201,95,8,82,113],\"IsSigner\":false,\"IsWritable\":true}],\"Data\":\"AgAAAAEAAAAAAAAA\"}]"}`
+
+	req, err := http.NewRequest("POST", "/system/send_tx", strings.NewReader(data))
 	if err != nil {
 		return -1
 	}
 	req.Header.Set("eventType", "result")
-	req.Header.Set("name", "w3bstream")
 
 	resp, err := api.Call(req)
 	if err != nil {

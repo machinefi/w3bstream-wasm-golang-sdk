@@ -28,6 +28,9 @@ func Call(req *http.Request) (*http.Response, error) {
 	if req.URL.Scheme != scheme {
 		return nil, errors.New("invalid scheme")
 	}
+	if req.Header.Get("eventType") == "" {
+		return nil, errors.New("missing event type")
+	}
 
 	var buf bytes.Buffer
 
