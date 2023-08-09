@@ -1,6 +1,6 @@
 # How to use
 1. build a http.Request, must have a header `eventType`
-2. create a new `Event Routing`
+2. create a new `Event Routing` on W3bstream
 3. call the api.Call() function, and get a http.Response
 4. get data from the http.Response
 5. handle the `eventType` result
@@ -68,6 +68,112 @@ Read a evm-compatible blockchain's transaction.
       "s":"0x3094e02759b838514f8376e05ceb266badc791ac2e7045ee7c15e58fc626980b",
       "to":"0xd313b3131e238c635f2fe4a84eadad71b3ed25fa",
       "hash":"0x441ab0b3af3b4de256fe95efcdbf73b7652cf260b89cf8746e0aea486c0467bd"
+   }
+}
+```
+
+# Read Solana Transaction
+
+Read solana chain transaction.
+
+**example** : examples/read_solana_tx/main.go
+
+**URL** : `/system/read_tx`
+
+**Method** : `GET`
+
+## Success Response
+
+**Code** : `200 OK`  
+**Code** : `400 Bad Request`  
+**Code** : `500 Internal Server Error`  
+
+**Request examples**
+
+```json
+{
+   "chainName":"solana-devnet",
+   "hash":"5FYQ3TEG56TaYfUC7UohgAmNR6cuSQCJA9eiwzMxwXXpxsi2FvAK2bxm9oCZLLRzZiYEVwozn2MBmHnmR2mXqd99"
+}
+```
+
+**Response examples**
+
+```json
+{
+   "result":{
+      "Slot":235318864,
+      "Meta":{
+         "Err":null,
+         "Fee":5000,
+         "PreBalances":[
+            11999990000,
+            1
+         ],
+         "PostBalances":[
+            11999985000,
+            1
+         ],
+         "PreTokenBalances":[
+            
+         ],
+         "PostTokenBalances":[
+            
+         ],
+         "LogMessages":[
+            "Program 11111111111111111111111111111111 invoke [1]",
+            "Program 11111111111111111111111111111111 success"
+         ],
+         "InnerInstructions":[
+            
+         ],
+         "LoadedAddresses":{
+            "writable":[
+               
+            ],
+            "readonly":[
+               
+            ]
+         },
+         "ReturnData":null,
+         "ComputeUnitsConsumed":0
+      },
+      "Transaction":{
+         "Signatures":[
+            "1JuedY5d+oYTEcSXz2WkluB9/caDX4czUf9iI9FrtW/GaswfkyO6GuIL+o2K57oY1qsthuvq/zDuunXKE8WCCA=="
+         ],
+         "Message":{
+            "Version":"legacy",
+            "Header":{
+               "NumRequireSignatures":1,
+               "NumReadonlySignedAccounts":0,
+               "NumReadonlyUnsignedAccounts":1
+            },
+            "Accounts":[
+               "79VcKNkFH9zgHxRmy8skRbWVaV4LCbkjZjVTrDPCcBf6",
+               "11111111111111111111111111111111"
+            ],
+            "RecentBlockHash":"CXv7Cjf7VeFXzdY4hzTMsndU587eA5C7jmb9XexoHRoe",
+            "Instructions":[
+               {
+                  "ProgramIDIndex":1,
+                  "Accounts":[
+                     0,
+                     0
+                  ],
+                  "Data":"AgAAAAEAAAAAAAAA"
+               }
+            ],
+            "AddressLookupTables":[
+               
+            ]
+         }
+      },
+      "BlockTime":1691479501,
+      "AccountKeys":[
+         "79VcKNkFH9zgHxRmy8skRbWVaV4LCbkjZjVTrDPCcBf6",
+         "11111111111111111111111111111111"
+      ]
    }
 }
 ```
