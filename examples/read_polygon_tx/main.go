@@ -17,7 +17,7 @@ func main() {}
 
 //export start
 func _start(rid uint32) int32 {
-	data := `{"chainName": "solana-devnet","hash": "5FYQ3TEG56TaYfUC7UohgAmNR6cuSQCJA9eiwzMxwXXpxsi2FvAK2bxm9oCZLLRzZiYEVwozn2MBmHnmR2mXqd99"}`
+	data := `{"chainID": 80001,"hash": "0x7b221cd72ccf6ef65b8d05e50807c2c3dcee984cb5f6c916e7484a3e871ef017"}`
 
 	req, err := http.NewRequest("GET", "/system/read_tx", strings.NewReader(data))
 	if err != nil {

@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"net/http"
 	"strings"
 
@@ -55,6 +56,17 @@ func _handle_result(rid uint32) int32 {
 		}
 	}()
 
-	log.Log(fmt.Sprintf("get result %v: `%s`", rid, string(message)))
+	resp, err := api.ConvResponse(message)
+	if err != nil {
+		log.Log(err.Error())
+		return -1
+	}
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Log(err.Error())
+		return -1
+	}
+
+	log.Log(fmt.Sprintf("get result: %v, status: %v, information: %v", rid, resp.Status, string(body)))
 	return 0
 }

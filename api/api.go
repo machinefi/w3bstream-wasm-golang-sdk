@@ -1,13 +1,15 @@
 package api
 
 import (
-	"bufio"
-	"bytes"
 	"errors"
+	"io"
 	"net/http"
 	"unsafe"
 
+	"github.com/machinefi/w3bstream-wasm-golang-sdk/api/model"
 	"github.com/machinefi/w3bstream-wasm-golang-sdk/common"
+	"github.com/machinefi/w3bstream-wasm-golang-sdk/log"
+	"github.com/mailru/easyjson"
 )
 
 const (
@@ -32,13 +34,27 @@ func Call(req *http.Request) (*http.Response, error) {
 		return nil, errors.New("missing event type")
 	}
 
-	var buf bytes.Buffer
-
-	if err := req.Write(&buf); err != nil {
+	var body []byte
+	if req.Body != nil {
+		var err error
+		body, err = io.ReadAll(req.Body)
+		if err != nil {
+			return nil, err
+		}
+	}
+	mr := model.HttpRequest{
+		Method: req.Method,
+		Url:    req.URL.String(),
+		Header: req.Header,
+		Body:   body,
+	}
+	buf, err := easyjson.Marshal(&mr)
+	if err != nil {
 		return nil, err
 	}
+	log.Log(string(buf))
 
-	addr, size := common.BytesToPointer(buf.Bytes())
+	addr, size := common.BytesToPointer(buf)
 
 	rAddr := uintptr(unsafe.Pointer(new(uint32)))
 	rSize := uintptr(unsafe.Pointer(new(uint32)))
@@ -53,5 +69,7 @@ func Call(req *http.Request) (*http.Response, error) {
 		return nil, errors.New("fail to get the data from host")
 	}
 
-	return http.ReadResponse(bufio.NewReader(bytes.NewBuffer(m.Data)), nil)
+	log.Log(string(m.Data))
+
+	return ConvResponse(m.Data)
 }
