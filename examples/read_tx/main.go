@@ -56,8 +56,6 @@ func _handle_result(rid uint32) int32 {
 		}
 	}()
 
-	log.Log(string(message))
-
 	resp, err := api.ConvResponse(message)
 	if err != nil {
 		log.Log(err.Error())

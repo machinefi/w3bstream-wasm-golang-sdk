@@ -8,7 +8,6 @@ import (
 
 	"github.com/machinefi/w3bstream-wasm-golang-sdk/api/model"
 	"github.com/machinefi/w3bstream-wasm-golang-sdk/common"
-	"github.com/machinefi/w3bstream-wasm-golang-sdk/log"
 	"github.com/mailru/easyjson"
 )
 
@@ -52,7 +51,6 @@ func Call(req *http.Request) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-	log.Log(string(buf))
 
 	addr, size := common.BytesToPointer(buf)
 
@@ -68,8 +66,6 @@ func Call(req *http.Request) (*http.Response, error) {
 	if m == nil {
 		return nil, errors.New("fail to get the data from host")
 	}
-
-	log.Log(string(m.Data))
 
 	return ConvResponse(m.Data)
 }
