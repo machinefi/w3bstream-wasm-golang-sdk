@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"net/http"
 
 	"github.com/machinefi/w3bstream-wasm-golang-sdk/api"
@@ -17,6 +18,7 @@ func main() {}
 func _start(rid uint32) int32 {
 	req, err := http.NewRequest("GET", "/system/hello", nil)
 	if err != nil {
+		log.Log(err.Error())
 		return -1
 	}
 	req.Header.Set("eventType", "result")
@@ -24,11 +26,13 @@ func _start(rid uint32) int32 {
 
 	resp, err := api.Call(req)
 	if err != nil {
+		log.Log(err.Error())
 		return -1
 	}
 
 	var buf bytes.Buffer
 	if err := resp.Write(&buf); err != nil {
+		log.Log(err.Error())
 		return -1
 	}
 
@@ -53,6 +57,17 @@ func _handle_result(rid uint32) int32 {
 		}
 	}()
 
-	log.Log(fmt.Sprintf("get result %v: `%s`", rid, string(message)))
+	resp, err := api.ConvResponse(message)
+	if err != nil {
+		log.Log(err.Error())
+		return -1
+	}
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Log(err.Error())
+		return -1
+	}
+
+	log.Log(fmt.Sprintf("get result: %v, status: %v, information: %v", rid, resp.Status, string(body)))
 	return 0
 }
