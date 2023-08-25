@@ -211,3 +211,40 @@ Send solana chain transaction.
    "to":"5FYQ3TEG56TaYfUC7UohgAmNR6cuSQCJA9eiwzMxwXXpxsi2FvAK2bxm9oCZLLRzZiYEVwozn2MBmHnmR2mXqd99"
 }
 ```
+
+
+# Send Eth Transaction
+
+Send evm-compatible blockchain's transaction.
+
+**example** : examples/send_eth_tx/main.go
+
+**URL** : `/system/send_tx`
+
+**Method** : `POST`
+
+## Success Response
+
+**Code** : `200 OK`  
+**Code** : `400 Bad Request`  
+**Code** : `500 Internal Server Error`  
+
+**Request examples**
+
+```json
+{
+    "chainName": "iotex-testnet",
+    "operatorName": "default",
+    "to": "0x1ED83F5AD999262eC06Ed8f3B801e108024b3e9c",
+    "value": "0",
+    "data": "40c10f1900000000000000000000000097186a21fa8e7955c0f154f960d588c3aca44f140000000000000000000000000000000000000000000000000de0b6b3a7640000"
+}
+```
+
+**Response examples**
+
+```json
+{
+    "to": "0x55e127072ad3a57e06efc49f3e962eb9f1e782bacc5dfc2192c08cee32b3610b"
+}
+```
