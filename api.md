@@ -25,9 +25,20 @@ Get a hello.
 hello w3bstream
 ```
 
-# Read ETH Transaction
+# Read Eth-Compatible Transaction
 
-Read a evm-compatible blockchain's transaction.
+Read a transaction from blockchains which follow [Ethereum JSON-RPC specification](https://ethereum.github.io/execution-apis/api-documentation/). Supported blockchains are:
+
+| chainName | chainID |
+| --------- | ------- |
+| iotex-mainnet | 4689 |
+| iotex-testnet | 4690 |
+| ethereum-mainnet | 1 |
+| goerli | 5 |
+| polygon-mainnet | 137 |
+| mumbai | 80001 |
+| arbitrum-goerli | 421613 |
+| arbitrum-one | 42161 |
 
 **example** : examples/read_tx/main.go
 
@@ -43,9 +54,10 @@ Read a evm-compatible blockchain's transaction.
 
 **Request examples**
 
+read transaction from iotex-testnet
 ```json
 {
-    "chainID": 4690,
+    "chainName": "iotex-testnet",
     "hash": "fcaf377ff3cc785d60c58de7e121d6a2e79e1c58c189ea8641f3ea61f7605285"
 }
 ```
@@ -69,6 +81,42 @@ Read a evm-compatible blockchain's transaction.
       "to":"0xd313b3131e238c635f2fe4a84eadad71b3ed25fa",
       "hash":"0x441ab0b3af3b4de256fe95efcdbf73b7652cf260b89cf8746e0aea486c0467bd"
    }
+}
+```
+
+# Send Eth-Compatible Transaction
+
+Send transaction to blockchains which follow Ethereum JSON-RPC specification.
+
+**example** : examples/send_eth_tx/main.go
+
+**URL** : `/system/send_tx`
+
+**Method** : `POST`
+
+## Success Response
+
+**Code** : `200 OK`  
+**Code** : `400 Bad Request`  
+**Code** : `500 Internal Server Error`  
+
+**Request examples**
+
+```json
+{
+    "chainName": "iotex-testnet",
+    "operatorName": "default",
+    "to": "0x1ED83F5AD999262eC06Ed8f3B801e108024b3e9c",
+    "value": "0",
+    "data": "40c10f1900000000000000000000000097186a21fa8e7955c0f154f960d588c3aca44f140000000000000000000000000000000000000000000000000de0b6b3a7640000"
+}
+```
+
+**Response examples**
+
+```json
+{
+    "to": "0x55e127072ad3a57e06efc49f3e962eb9f1e782bacc5dfc2192c08cee32b3610b"
 }
 ```
 
@@ -213,38 +261,3 @@ Send solana chain transaction.
 ```
 
 
-# Send Eth Transaction
-
-Send evm-compatible blockchain's transaction.
-
-**example** : examples/send_eth_tx/main.go
-
-**URL** : `/system/send_tx`
-
-**Method** : `POST`
-
-## Success Response
-
-**Code** : `200 OK`  
-**Code** : `400 Bad Request`  
-**Code** : `500 Internal Server Error`  
-
-**Request examples**
-
-```json
-{
-    "chainName": "iotex-testnet",
-    "operatorName": "default",
-    "to": "0x1ED83F5AD999262eC06Ed8f3B801e108024b3e9c",
-    "value": "0",
-    "data": "40c10f1900000000000000000000000097186a21fa8e7955c0f154f960d588c3aca44f140000000000000000000000000000000000000000000000000de0b6b3a7640000"
-}
-```
-
-**Response examples**
-
-```json
-{
-    "to": "0x55e127072ad3a57e06efc49f3e962eb9f1e782bacc5dfc2192c08cee32b3610b"
-}
-```
