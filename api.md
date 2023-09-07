@@ -37,7 +37,7 @@ Get a hello.
 
 # Read Eth-Compatible Transaction
 
-Read a transaction from blockchains which follow [Ethereum JSON-RPC specification](https://ethereum.github.io/execution-apis/api-documentation/). Supported blockchains are:
+Read a transaction from blockchains which follow [Ethereum JSON-RPC specification](https://ethereum.github.io/execution-apis/api-documentation/). The supported blockchains include:
 
 | chainName | chainID |
 | --------- | ------- |
@@ -49,6 +49,8 @@ Read a transaction from blockchains which follow [Ethereum JSON-RPC specificatio
 | mumbai | 80001 |
 | arbitrum-goerli | 421613 |
 | arbitrum-one | 42161 |
+| op-goerli | 420 |
+| op-mainnet | 10 |
 
 **example** : examples/read_tx/main.go
 
