@@ -21,8 +21,18 @@ Get a hello.
 
 **Response examples**
 
-```string
-hello w3bstream
+```json
+{
+	"message": "hello w3bstream"
+}
+```
+
+**Async Response examples**
+
+```json
+{
+	"async message": "hello w3bstream"
+}
 ```
 
 # Read Eth-Compatible Transaction
@@ -116,7 +126,16 @@ Send transaction to blockchains which follow Ethereum JSON-RPC specification.
 
 ```json
 {
-    "to": "0x55e127072ad3a57e06efc49f3e962eb9f1e782bacc5dfc2192c08cee32b3610b"
+	"transactionID": "11288089962365952"
+}
+```
+
+**Async Response examples**
+
+```json
+{
+	"transactionID": "11288089962365952",
+	"state": "CONFIRMED"
 }
 ```
 
@@ -256,8 +275,15 @@ Send solana chain transaction.
 
 ```json
 {
-   "to":"5FYQ3TEG56TaYfUC7UohgAmNR6cuSQCJA9eiwzMxwXXpxsi2FvAK2bxm9oCZLLRzZiYEVwozn2MBmHnmR2mXqd99"
+	"transactionID": "11288089962365953"
 }
 ```
 
+**Async Response examples**
 
+```json
+{
+	"transactionID": "11288089962365953",
+	"state": "CONFIRMED"
+}
+```

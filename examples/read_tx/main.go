@@ -17,7 +17,7 @@ func main() {}
 
 //export start
 func _start(rid uint32) int32 {
-	data := `{"chainID": 4690,"hash": "fcaf377ff3cc785d60c58de7e121d6a2e79e1c58c189ea8641f3ea61f7605285"}`
+	data := `{"chainName": "iotex-testnet","hash": "fcaf377ff3cc785d60c58de7e121d6a2e79e1c58c189ea8641f3ea61f7605285"}`
 
 	req, err := http.NewRequest("GET", "/system/read_tx", strings.NewReader(data))
 	if err != nil {
