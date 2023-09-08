@@ -51,6 +51,8 @@ Read a transaction from blockchains which follow [Ethereum JSON-RPC specificatio
 | arbitrum-one | 42161 |
 | op-goerli | 420 |
 | op-mainnet | 10 |
+| base-goerli | 84531 |
+| base-mainnet | 8453 |
 
 **example** : examples/read_tx/main.go
 
