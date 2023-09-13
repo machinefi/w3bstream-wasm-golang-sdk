@@ -327,7 +327,7 @@ Just support `iotex-testnet` now.
 
 ```json
 {
-	"transactionID": "11288089962365952"
+	"transactionID": "13540418344423426"
 }
 ```
 
@@ -335,7 +335,7 @@ Just support `iotex-testnet` now.
 
 ```json
 {
-	"transactionID": "11288089962365952",
+	"transactionID": "13540418344423426",
 	"state": "CONFIRMED"
 }
 ```
