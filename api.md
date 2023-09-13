@@ -291,3 +291,52 @@ Send solana chain transaction.
 	"state": "CONFIRMED"
 }
 ```
+
+# Send Eth-Compatible Transaction With Account Abstraction Paymaster
+
+Send userop to blockchains.  
+Need create a operator with paymaster key on W3bstream studio first.  
+Just support `iotex-testnet` now.  
+
+**example** : examples/send_eth_userop_transfer/main.go  
+**example** : examples/send_eth_userop_contract_call/main.go  
+
+**URL** : `/system/send_tx`
+
+**Method** : `POST`
+
+## Success Response
+
+**Code** : `200 OK`  
+**Code** : `400 Bad Request`  
+**Code** : `500 Internal Server Error`  
+
+**Request examples**
+
+```json
+{
+   "chainName":"iotex-testnet",
+   "operatorName":"aa-op",
+   "to":"0x065e1164818487818E6BA714E8d80B91718ad758",
+   "value":"0.001",
+   "data":"0x"
+}
+```
+
+**Response examples**
+
+```json
+{
+	"transactionID": "11288089962365952"
+}
+```
+
+**Async Response examples**
+
+```json
+{
+	"transactionID": "11288089962365952",
+	"state": "CONFIRMED"
+}
+```
+
