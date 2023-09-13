@@ -343,3 +343,51 @@ the size of proof big, so here just show the fields.
   "journal":[44,0,0,0,73,32,107,110,111,119,32,116,104,101,32,114,101,115,117,108,116,32,105,115,32,49,51,44,32,97,110,100,32,73,32,99,97,110,32,112,114,111,118,101,32,105,116,33]}
 
 ```
+
+# Send Eth-Compatible Transaction With Account Abstraction Paymaster
+
+Send userop to blockchains.  
+Need create a operator with paymaster key on W3bstream studio first.  
+Just support `iotex-testnet` now.  
+
+**example** : examples/send_eth_userop_transfer/main.go  
+**example** : examples/send_eth_userop_contract_call/main.go  
+
+**URL** : `/system/send_tx`
+
+**Method** : `POST`
+
+## Success Response
+
+**Code** : `200 OK`  
+**Code** : `400 Bad Request`  
+**Code** : `500 Internal Server Error`  
+
+**Request examples**
+
+```json
+{
+   "chainName":"iotex-testnet",
+   "operatorName":"aa-op",
+   "to":"0x065e1164818487818E6BA714E8d80B91718ad758",
+   "value":"0.001",
+   "data":"0x"
+}
+```
+
+**Response examples**
+
+```json
+{
+	"transactionID": "13540418344423426"
+}
+```
+
+**Async Response examples**
+
+```json
+{
+	"transactionID": "13540418344423426",
+	"state": "CONFIRMED"
+}
+```
