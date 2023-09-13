@@ -292,6 +292,58 @@ Send solana chain transaction.
 }
 ```
 
+# Send Zero-knowledge proof 
+
+Send Zero-knowledge proof.
+
+> Get imageID and params information from this table
+
+| model name     | imageID                                                                                             | params description                                                                                              |
+|----------------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| addition       | 2186205088, 1485329292, 2949505276, 3208173045, 904044514, 2453731502, 2808199858, 3950677529       | two integer strings, separated by `,`, like `"23" "17"`                                                         |
+| multiplication | 1927924675, 2372446028, 2676189059, 2835023877, 3605653136, 1348693279, 1950115145, 4273596748      | two integer strings, separated by `,`, like `"23" "17"`                                                         |
+| subtraction    | 583419988, 3883541096, 2295984015, 1229958674, 2094668052, 3839904534, 361043419, 198121633         | two integer strings, separated by `,`. first one is larger than the second one, like `"23" "17"`           |
+| range          | 3032313208, 1994674162, 3791010111, 3398397083, 1734589883, 3837447328, 2237080851, 2822465628      | three integer strings, separated by `,`. first one is between the second and the third, like `"15" "10" "23"`   |                 
+| greater        | 3398477973, 4075637990, 185171057, 2454591768, 2481632412, 4240721140, 363332211, 887718589         | two integer strings, separated by `,`. first one is larger than the second one, like `"23" "17"`           |
+
+**example** : examples/risc_zkp/main.go
+
+**URL** : `/system/gen_zk_proof`
+
+**Method** : `POST`
+
+## Success Response
+
+**Code** : `200 OK`  
+**Code** : `400 Bad Request`  
+**Code** : `500 Internal Server Error`
+
+**Request examples**
+
+```json
+{
+   "imageID":"583419988, 3883541096, 2295984015, 1229958674, 2094668052, 3839904534, 361043419, 198121633",
+   "params":"[\"37\", \"24\"]"
+}
+```
+
+**Response examples**
+the size of proof big, so here just show the fields. 
+```json
+{
+  "inner":{
+    "Flat":[
+      {
+        "seal":[0,0,0,0,0,0,0,0,0,0,2194396090,...,3731194972,1340921636,1146046463,2264386654,1031639317],
+        "index":0,
+        "hashfn":"sha-256"
+      }
+    ]
+  },
+  "journal":[44,0,0,0,73,32,107,110,111,119,32,116,104,101,32,114,101,115,117,108,116,32,105,115,32,49,51,44,32,97,110,100,32,73,32,99,97,110,32,112,114,111,118,101,32,105,116,33]}
+
+```
+
 # Send Eth-Compatible Transaction With Account Abstraction Paymaster
 
 Send userop to blockchains.  
@@ -339,4 +391,3 @@ Just support `iotex-testnet` now.
 	"state": "CONFIRMED"
 }
 ```
-
