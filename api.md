@@ -298,13 +298,13 @@ Send Zero-knowledge proof.
 
 > Get imageID and params information from this table
 
-| model name     | imageID                                                                                             | params description                                                                                              |
-|----------------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| addition       | 2186205088, 1485329292, 2949505276, 3208173045, 904044514, 2453731502, 2808199858, 3950677529       | two integer strings, separated by `,`, like `"23" "17"`                                                         |
-| multiplication | 1927924675, 2372446028, 2676189059, 2835023877, 3605653136, 1348693279, 1950115145, 4273596748      | two integer strings, separated by `,`, like `"23" "17"`                                                         |
-| subtraction    | 583419988, 3883541096, 2295984015, 1229958674, 2094668052, 3839904534, 361043419, 198121633         | two integer strings, separated by `,`. first one is larger than the second one, like `"23" "17"`           |
-| range          | 3032313208, 1994674162, 3791010111, 3398397083, 1734589883, 3837447328, 2237080851, 2822465628      | three integer strings, separated by `,`. first one is between the second and the third, like `"15" "10" "23"`   |                 
-| greater        | 3398477973, 4075637990, 185171057, 2454591768, 2481632412, 4240721140, 363332211, 887718589         | two integer strings, separated by `,`. first one is larger than the second one, like `"23" "17"`           |
+| model name     | imageID                                                                                         | params description                                                                                              |
+|----------------|-------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| addition       | 3863567922, 2404777232, 2693943780, 4207360975, 1147152290, 467959105, 69766310, 1627741011     | two integer strings, separated by `,`, like `"23" "17"`                                                         |
+| multiplication | 3585919858, 3547600316, 2236080185, 1080621844, 212293629, 3683389566, 71769817, 967938330      | two integer strings, separated by `,`, like `"23" "17"`                                                         |
+| subtraction    | 1753901548, 3541261194, 4025921735, 2828974925, 4201143231, 1100387519, 4193452787, 3597377440  | two integer strings, separated by `,`. first one is larger than the second one, like `"23" "17"`           |
+| range          | 3145991386, 3471678490, 3632776032, 2595288688, 1478438623, 4259749138, 987879707, 1456846509   | three integer strings, separated by `,`. first one is between the second and the third, like `"15" "10" "23"`   |                 
+| greater        | 123160077, 2552749566, 572037666, 1916298776, 3529235965, 4225778306, 449212140, 1038195090     | two integer strings, separated by `,`. first one is larger than the second one, like `"23" "17"`           |
 
 **example** : examples/risc_zkp/main.go
 
@@ -322,8 +322,10 @@ Send Zero-knowledge proof.
 
 ```json
 {
-   "imageID":"583419988, 3883541096, 2295984015, 1229958674, 2094668052, 3839904534, 361043419, 198121633",
-   "params":"[\"37\", \"24\"]"
+   "imageID":"3145991386, 3471678490, 3632776032, 2595288688, 1478438623, 4259749138, 987879707, 1456846509",
+   "privateInput":"16",
+   "publicInput":"4,30",
+   "receiptType": "Stark"
 }
 ```
 

@@ -17,9 +17,13 @@ func main() {}
 
 //export start
 func _start(rid uint32) int32 {
-	imageID := "583419988, 3883541096, 2295984015, 1229958674, 2094668052, 3839904534, 361043419, 198121633" //subtraction
-	params := "[\"37\", \"24\"]"
-	data := fmt.Sprintf(`{"imageID": "%s","params": %s}`, imageID, params)
+	imageID := "3145991386, 3471678490, 3632776032, 2595288688, 1478438623, 4259749138, 987879707, 1456846509" //Range
+	privateInput := "16"
+	publicInput := "4,30"
+	// Stark or Snark
+	receiptType := "Stark"
+	data := fmt.Sprintf(`{"imageID": "%s","privateInput": "%s","publicInput": "%s", "receiptType": "%s"}`,
+		imageID, privateInput, publicInput, receiptType)
 	log.Log(data)
 
 	req, err := http.NewRequest("POST", "/system/gen_zk_proof", strings.NewReader(data))
