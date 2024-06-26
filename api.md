@@ -53,6 +53,10 @@ Read a transaction from blockchains which follow [Ethereum JSON-RPC specificatio
 | op-mainnet | 10 |
 | base-goerli | 84531 |
 | base-mainnet | 8453 |
+| zksync-era-testnet | 280 |
+| zksync-era-mainnet | 324 |
+| conflux-espace-testnet | 71 |
+| conflux-espace-mainnet | 1030 |
 
 **example** : examples/read_tx/main.go
 
